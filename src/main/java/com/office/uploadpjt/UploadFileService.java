@@ -13,6 +13,8 @@ public class UploadFileService {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
+    @Value("${file.upload-dir-separator}")
+    private String uploadDirSeparato;
 
     public String upload(MultipartFile file) {
         System.out.println("[UploadFileService] upload()");
@@ -33,7 +35,11 @@ public class UploadFileService {
         // File saveFile = new File(uploadDir + "\\" + uniqueFileName + fileExtension);
 
         // For linux(ubuntu)
-        File saveFile = new File(uploadDir + "/" + uniqueFileName + fileExtension);
+        // File saveFile = new File(uploadDir + "/" + uniqueFileName + fileExtension);
+
+        //ALL
+        File saveFile = new File(uploadDir + uploadDirSeparato + uniqueFileName + fileExtension);
+
 
         try {
             file.transferTo(saveFile);
